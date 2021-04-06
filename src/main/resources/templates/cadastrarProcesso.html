@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Sistema Integrado de Gestão</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a th:href="@{/}">Home</a></li>
+				<li><a th:href="@{/cliente/cadastrar}"> Cliente </a></li>
+				<li><a th:href="@{/advogado/cadastrar}"> Advogado </a></li>
+				<li><a th:href="@{/processo/cadastrar}"> Processo </a></li>
+				<li><a th:href="@{/audiencia/cadastrar}"> Audiencia</a></li>
+				<li><a th:href="@{/login?logout}">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<h1>Cadastrar Processo</h1>
+	<img th:src="@{/images/oiPaixao.jpeg}" />
+	
+</body>
+</html>
