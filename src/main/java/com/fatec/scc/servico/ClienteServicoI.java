@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +17,8 @@ public class ClienteServicoI implements ClienteServico{
 	Logger logger = LogManager.getLogger(ClienteServicoI.class);
 	@Autowired
 	private ClienteRepository repository;
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	public Iterable<Cliente> findAll() {
 		return repository.findAll();
@@ -63,12 +66,12 @@ public class ClienteServicoI implements ClienteServico{
 	
 	public String sendMail(Cliente cliente) {         
 		SimpleMailMessage message = new SimpleMailMessage();         
-		message.setFrom("disclabes@gmail.com");         
+		message.setFrom("giulia-ratti@hotmail.com");         
 		message.setTo(cliente.getEmail());         
 		message.setSubject("Confirmação do cadastro de cliente");         
 		message.setText(cliente.toString());          
-		try {             
-			mailSender.simpleMessage(message);             
+		try {           
+			mailSender.send(message);             
 			logger.info(">>>>>> 5. Envio do e-mail processado com sucesso.");             
 			return "Email enviado";         
 		} catch (Exception e) {             
