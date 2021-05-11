@@ -65,7 +65,7 @@ public class ClienteServicoI implements ClienteServico{
 		message.setFrom("disclabes@gmail.com");         
 		message.setTo(cliente.getEmail());         
 		message.setSubject("Confirmação do cadastro de cliente");         
-		message.setText(cliente.toString());         
+		message.setText(cliente.toString());          
 		try {             
 			mailSender.simpleMessage(message);             
 			logger.info(">>>>>> 5. Envio do e-mail processado com sucesso.");             
