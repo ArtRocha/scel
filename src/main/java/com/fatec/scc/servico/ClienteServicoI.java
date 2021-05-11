@@ -40,7 +40,7 @@ public class ClienteServicoI implements ClienteServico{
 				sendMail(cliente); 
 				modelAndView.addObject("clientes", repository.findAll()); 
 			} 
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			// captura validacoes na camada de persistencia 
 			modelAndView.setViewName("cadastrarCliente"); 
 			if (e.getMessage().contains("could not execute statement")) {
