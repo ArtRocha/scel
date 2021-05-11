@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fatec.scc.model.Cliente;
 import com.fatec.scc.model.ClienteRepository;
 import com.fatec.scc.model.Endereco;
+
 @Service
 public class ClienteServicoI implements ClienteServico{
 	Logger logger = LogManager.getLogger(ClienteServicoI.class);
@@ -28,23 +29,28 @@ public class ClienteServicoI implements ClienteServico{
 	public Cliente findById(Long id) {
 		return repository.findById(id).get();
 	}
-	public ModelAndView saveOrUpdate (Cliente cliente) {
-		ModelAndView modelAndView = new ModelAndView("consultarCliente");
-		try {
-			String endereco = obtemEndereco(cliente.getCep());
-			if (endereco != "") {
-				cliente.setEndereco(endereco);
-				repository.save(cliente);
-				logger.info(">>>>>> 4. comando save executado  ");
-				modelAndView.addObject("clientes", repository.findAll());
-			}
-
-		} catch (Exception e) { // captura validacoes na camada de persistencia
-			modelAndView.setViewName("cadastrarCliente");
-			modelAndView.addObject("message", "Dados invalidos - " + e.getMessage());
-			logger.error(">>>>>> 4. erro nao esperado ==> " + e.getMessage());
-		}
-		return modelAndView;
+	public ModelAndView saveOrUpdate (Cliente cliente) { 
+		ModelAndView modelAndView = new ModelAndView("consultarCliente"); 
+		try { 
+			String endereco = obtemEndereco(cliente.getCep()); 
+			if (endereco != "") { cliente.setEndereco(endereco); 
+				repository.save(cliente); 
+				logger.info(">>>>>> 4. comando save executado  "); 
+				sendMail(cliente); 
+				modelAndView.addObject("clientes", repository.findAll()); 
+			} 
+		} catch (Exception e) {
+			// captura validacoes na camada de persistencia 
+			modelAndView.setViewName("cadastrarCliente"); 
+			if (e.getMessage().contains("could not execute statement")) {
+				modelAndView.addObject("message", "Dados invalidos - cliente já cadastrado."); 
+				logger.info(">>>>>> 5. cliente ja cadastrado ==> " + e.getMessage()); 
+			} else { 
+				modelAndView.addObject("message", "Erro não esperado - contate o administrador"); 
+				logger.error(">>>>>> 5. erro nao esperado ==> " + e.getMessage()); 
+			} 
+		} 
+		return modelAndView; 
 	}
 	public String obtemEndereco(String cep) {
 		RestTemplate template = new RestTemplate();
@@ -52,6 +58,22 @@ public class ClienteServicoI implements ClienteServico{
 		Endereco endereco = template.getForObject(url, Endereco.class, cep);
 		logger.info(">>>>>> 3. obtem endereco ==> " + endereco.toString());
 		return endereco.getLogradouro();
+	}
+	
+	public String sendMail(Cliente cliente) {         
+		SimpleMailMessage message = new SimpleMailMessage();         
+		message.setFrom("disclabes@gmail.com");         
+		message.setTo(cliente.getEmail());         
+		message.setSubject("Confirmação do cadastro de cliente");         
+		message.setText(cliente.toString());         
+		try {             
+			mailSender.simpleMessage(message);             
+			logger.info(">>>>>> 5. Envio do e-mail processado com sucesso.");             
+			return "Email enviado";         
+		} catch (Exception e) {             
+			e.printStackTrace();             
+			return "Erro ao enviar e-mail.";         
+		} 
 	}
 	
 }

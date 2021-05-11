@@ -11,4 +11,5 @@ public interface ClienteServico {
 	public Cliente findById(Long id);
 	public ModelAndView saveOrUpdate (Cliente cliente);
 	public String obtemEndereco(String cep);
+	public String sendMail(Cliente cliente); 
 }
