@@ -35,10 +35,10 @@ public class AdvogadoController {
 		return mv;
 	}
 
-	@GetMapping("/advogados/{cpf}") // diz ao metodo que ira responder a uma requisicao do tipo get
-	public ModelAndView retornaFormParaEditarAdvogado(@PathVariable("cpf") String cpf) {
+	@GetMapping("/advogados/{oab}") // diz ao metodo que ira responder a uma requisicao do tipo get
+	public ModelAndView retornaFormParaEditarAdvogado(@PathVariable("oab") String oab) {
 		ModelAndView modelAndView = new ModelAndView("atualizarAdvogado");
-		modelAndView.addObject("advogado", servico.findByCpf(cpf)); // o repositorio e injetado no controller
+		modelAndView.addObject("advogado", servico.findByOab(oab)); // o repositorio e injetado no controller
 		return modelAndView; // addObject adiciona objetos para view
 	}
 

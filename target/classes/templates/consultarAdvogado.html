@@ -35,6 +35,7 @@
 						<tr>
 							<th>ID</th>
 							<th>CPF</th>
+							<th>OAB</th>
 							<th>Nome</th>
 							<th>e-mail</th>
 							<th>CEP</th>
@@ -45,6 +46,7 @@
 						<tr th:each="advogado : ${advogados}">
 							<td th:text="${advogado.id}"></td>
 							<td th:text="${advogado.cpf}"></td>
+							<td th:text="${advogado.oab}"></td>
 							<td th:text="${advogado.nome}"></td>
 							<td th:text="${advogado.email}"></td>
 							<td th:text="${advogado.cep}"></td>
@@ -52,7 +54,7 @@
 							<td>
 								<div class="btn-group pull-right">
 									<a class="btn btn-sm btn-primary"
-										th:href="@{/sig/advogados/{cpf}(cpf=${advogado.cpf})}">Editar</a>
+										th:href="@{/sig/advogados/{oab}(oab=${advogado.oab})}">Editar</a>
 									<a class="delete btn btn-sm btn-danger"
 										th:href="@{/sig/advogado/{id}(id=${advogado.id})}">Excluir</a>
 								</div>

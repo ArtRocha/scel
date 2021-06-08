@@ -18,8 +18,8 @@ public class AdvogadoServicol implements AdvogadoServico{
 	public Iterable<Advogado> findAll() {
 		return repository.findAll();
 	}
-	public Advogado findByCpf(String cpf) {
-		return repository.findByCpf(cpf);
+	public Advogado findByOab(String oab) {
+		return repository.findByOab(oab);
 	}
 	public void deleteById(Long id) {
 		repository.deleteById(id);

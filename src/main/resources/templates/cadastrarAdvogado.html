@@ -31,11 +31,17 @@
 				<div class="col-md-8">
 					<form action="#" th:action="@{/sig/advogados}" th:object="${advogado}" method="post">
 						<div class="row">
-
 							<div class="form-group col-md-4">
 								<label for="cpf" class="col-form-label">CPF</label> 
 								<input type="text" th:field="*{cpf}" class="form-control" id="cpf" placeholder="CPF"> 
 								<span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="text-danger"> </span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="oab" class="col-form-label">OAB</label> 
+								<input type="text" th:field="*{oab}" class="form-control" id="oab" placeholder="OAB"> 
+								<span th:if="${#fields.hasErrors('oab')}" th:errors="*{oab}" class="text-danger"> </span>
 							</div>
 						</div>
 						<div class="row">

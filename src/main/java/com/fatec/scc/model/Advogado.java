@@ -15,6 +15,10 @@ public class Advogado {
 	@Column(unique = true) // nao funciona com @Valid tem que tratar na camada de persistencia
 	private String cpf;
 	@NotNull
+	@Size(min = 5, max = 10, message = "OAB deve ter no mínimo 5 dígitos e no m´ximo 10")
+	@Column(unique = true) // nao funciona com @Valid tem que tratar na camada de persistencia
+	private String oab;
+	@NotNull
 	@Size(min = 1, max = 50, message = "Nome deve ser preenchido")
 	private String nome;
 	@NotNull
@@ -24,8 +28,9 @@ public class Advogado {
 	private String endereco;
 	public Advogado() {
 	}
-	public Advogado(@NotNull String cpf, @NotNull String nome, @NotNull String email, @NotNull String cep) {
+	public Advogado(@NotNull String cpf, @NotNull String oab, @NotNull String nome, @NotNull String email, @NotNull String cep) {
 		this.cpf = cpf;
+		this.oab = oab;
 		this.nome = nome;
 		this.email = email;
 		this.cep = cep;
@@ -41,6 +46,12 @@ public class Advogado {
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	public String getOab() {
+		return oab;
+	}
+	public void setOab(String oab) {
+		this.oab = oab;
 	}
 	public String getNome() {
 		return nome;
@@ -85,6 +96,11 @@ public class Advogado {
 				return false;
 		} else if (!cpf.equals(other.cpf))
 			return false;
+		if (oab == null) {
+			if (other.oab != null)
+				return false;
+		} else if (!oab.equals(other.oab))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -109,7 +125,7 @@ public class Advogado {
 	}
 	@Override
 	public String toString() {
-		return "Advogado [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", cep=" + cep
+		return "Advogado [id=" + id + ", cpf=" + cpf + ", oab=" + oab + ", nome=" + nome + ", email=" + email + ", cep=" + cep
 				+ ", endereco=" + endereco + "]";
 	}
 }

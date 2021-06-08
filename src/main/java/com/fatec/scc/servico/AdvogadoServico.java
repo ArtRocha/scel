@@ -6,7 +6,7 @@ import com.fatec.scc.model.Advogado;
 
 public interface AdvogadoServico {
 	public Iterable<Advogado> findAll();
-	public Advogado findByCpf(String cpf);
+	public Advogado findByOab(String oab);
 	public void deleteById(Long id);
 	public Advogado findById(Long id);
 	public ModelAndView saveOrUpdate (Advogado advogado);
