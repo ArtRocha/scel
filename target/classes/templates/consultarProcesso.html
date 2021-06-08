@@ -34,25 +34,25 @@
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>CPF</th>
-							<th>Nome</th>
-							<th>e-mail</th>
-							<th>CEP</th>
-							<th>Endereço</th>
+							<th>Tribunal</th>
+							<th>Órgão Judicial</th>
+							<th>Data De Abertura</th>
+							<th>Descrição do Processo</th>
+							<th>Status do Processo</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="processo : ${processos}">
 							<td th:text="${processo.id}"></td>
-							<td th:text="${processo.cpf}"></td>
-							<td th:text="${processo.nome}"></td>
-							<td th:text="${processo.email}"></td>
-							<td th:text="${processo.cep}"></td>
-							<td th:text="${processo.endereco}"></td>
+							<td th:text="${processo.tribunal}"></td>
+							<td th:text="${processo.orgaoJudicial}"></td>
+							<td th:text="${processo.dataDeAbertura}"></td>
+							<td th:text="${processo.descProcesso}"></td>
+							<td th:text="${processo.statusProcesso}"></td>
 							<td>
 								<div class="btn-group pull-right">
 									<a class="btn btn-sm btn-primary"
-										th:href="@{/sig/processos/{cpf}(cpf=${processo.cpf})}">Editar</a>
+										th:href="@{/sig/processos/{tribunal}(tribunal=${processo.tribunal})}">Editar</a>
 									<a class="delete btn btn-sm btn-danger"
 										th:href="@{/sig/processo/{id}(id=${processo.id})}">Excluir</a>
 								</div>

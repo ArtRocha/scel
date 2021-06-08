@@ -12,24 +12,26 @@ public class Processo{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	@NotNull
-	@Size(min = 11, max = 11, message = "CPF deve ter 11 caracteres")
-	@Column(unique = true) // nao funciona com @Valid tem que tratar na camada de persistencia
-	private String cpf;
+	@Size(min = 1, max = 50, message = "Tribunal do tribunal deve ser preenchido")
+	private String tribunal;
 	@NotNull
-	@Size(min = 1, max = 50, message = "Nome deve ser preenchido")
-	private String nome;
+	@Size(min = 1, max = 50, message = "Tribunal do orgão judicial deve ser preenchido")
+	private String orgaoJudicial;
 	@NotNull
-	private String email;
+	private String dataDeAbertura;
 	@NotNull
-	private String cep;
-	private String endereco;
+	private String descProcesso;
+	@NotNull
+	private String statusProcesso;
 	public Processo() {
 	}
-	public Processo(@NotNull String cpf, @NotNull String nome, @NotNull String email, @NotNull String cep) {
-		this.cpf = cpf;
-		this.nome = nome;
-		this.email = email;
-		this.cep = cep;
+	public Processo(Long id, @NotNull String tribunal, @NotNull String orgaoJudicial, @NotNull String dataDeAbertura, @NotNull String descProcesso, @NotNull String statusProcesso) {
+		this.id = id;
+		this.tribunal = tribunal;
+		this.orgaoJudicial = orgaoJudicial;
+		this.dataDeAbertura = dataDeAbertura;
+		this.descProcesso = descProcesso;
+		this.statusProcesso = statusProcesso;
 	}
 	public Long getId() {
 		return id;
@@ -37,35 +39,35 @@ public class Processo{
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getCpf() {
-		return cpf;
+	public String getTribunal() {
+		return tribunal;
 	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setTribunal(String tribunal) {
+		this.tribunal = tribunal;
 	}
-	public String getNome() {
-		return nome;
+	public String getOrgaoJudicial() {
+		return orgaoJudicial;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setOrgaoJudicial(String orgaoJudicial) {
+		this.orgaoJudicial = orgaoJudicial;
 	}
-	public String getEmail() {
-		return email;
+	public String getDataDeAbertura() {
+		return dataDeAbertura;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDataDeAbertura(String dataDeAbertura) {
+		this.dataDeAbertura = dataDeAbertura;
 	}
-	public String getCep() {
-		return cep;
+	public String getDescProcesso() {
+		return descProcesso;
 	}
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setDescProcesso(String descProcesso) {
+		this.descProcesso = descProcesso;
 	}
-	public String getEndereco() {
-		return endereco;
+	public String getStatusProcesso() {
+		return statusProcesso;
 	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setStatusProcesso(String statusProcesso) {
+		this.statusProcesso = statusProcesso;
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -76,42 +78,47 @@ public class Processo{
 		if (getClass() != obj.getClass())
 			return false;
 		Processo other = (Processo) obj;
-		if (cep == null) {
-			if (other.cep != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!cep.equals(other.cep))
+		} else if (!id.equals(other.id))
 			return false;
-		if (cpf == null) {
-			if (other.cpf != null)
+		if (dataDeAbertura == null) {
+			if (other.dataDeAbertura != null)
 				return false;
-		} else if (!cpf.equals(other.cpf))
+		} else if (!dataDeAbertura.equals(other.dataDeAbertura))
 			return false;
-		if (email == null) {
-			if (other.email != null)
+		if (orgaoJudicial == null) {
+			if (other.orgaoJudicial != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if (!orgaoJudicial.equals(other.orgaoJudicial))
 			return false;
-		if (endereco == null) {
-			if (other.endereco != null)
+		if (descProcesso == null) {
+			if (other.descProcesso != null)
 				return false;
-		} else if (!endereco.equals(other.endereco))
+		} else if (!descProcesso.equals(other.descProcesso))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (nome == null) {
-			if (other.nome != null)
+		if (tribunal == null) {
+			if (other.tribunal != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!tribunal.equals(other.tribunal))
+			return false;
+		if (statusProcesso == null) {
+			if (other.statusProcesso != null)
+				return false;
+		} else if (!statusProcesso.equals(other.statusProcesso))
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Processo [id=" + id + ", cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", cep=" + cep
-				+ ", endereco=" + endereco + "]";
+		return "Processo [id=" + id + ", tribunal=" + tribunal + ", orgaoJudicial=" + orgaoJudicial + ", dataDeAbertura=" + dataDeAbertura
+				+ ", descProcesso=" + descProcesso + ", statusProcesso=" + statusProcesso + "]";
 	}
 	
 

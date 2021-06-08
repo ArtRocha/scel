@@ -36,13 +36,6 @@ public class ProcessoController {
 		return mv;
 	}
 
-	@GetMapping("/processos/{cpf}") // diz ao metodo que ira responder a uma requisicao do tipo get
-	public ModelAndView retornaFormParaEditarProcesso(@PathVariable("cpf") String cpf) {
-		ModelAndView modelAndView = new ModelAndView("atualizarProcesso");
-		modelAndView.addObject("processo", servico.findByCpf(cpf)); // o repositorio e injetado no controller
-		return modelAndView; // addObject adiciona objetos para view
-	}
-
 	@GetMapping("/processo/{id}")
 	public ModelAndView excluirNoFormDeConsultaProcesso(@PathVariable("id") Long id) {
 		servico.deleteById(id);
@@ -72,10 +65,11 @@ public class ProcessoController {
 		}
 		// programacao defensiva - deve-se verificar se o Processo existe antes de atualizar
 		Processo umProcesso = servico.findById(id);
-		umProcesso.setCpf(processo.getCpf());
-		umProcesso.setNome(processo.getNome());
-		umProcesso.setEmail(processo.getEmail());
-		umProcesso.setCep(processo.getCep());// deve-se obter o endereco antes de salvar
+		umProcesso.setTribunal(processo.getTribunal());
+		umProcesso.setOrgaoJudicial(processo.getOrgaoJudicial());
+		umProcesso.setDataDeAbertura(processo.getDataDeAbertura());
+		umProcesso.setDescProcesso(processo.getDescProcesso());
+		umProcesso.setStatusProcesso(processo.getStatusProcesso());
 		modelAndView = servico.saveOrUpdate(umProcesso);
 		
 		return modelAndView;

@@ -31,33 +31,38 @@
 				<div class="col-md-8">
 					<form action="#" th:action="@{/sig/processos}" th:object="${processo}" method="post">
 						<div class="row">
-
 							<div class="form-group col-md-4">
-								<label for="cpf" class="col-form-label">CPF</label> 
-								<input type="text" th:field="*{cpf}" class="form-control" id="cpf" placeholder="CPF"> 
-								<span th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="text-danger"> </span>
+								<label for="tribunal" class="col-form-label">Tribunal</label> 
+								<input type="text" th:field="*{tribunal}" class="form-control" id="tribunal" placeholder="Tribunal"> 
+								<span th:if="${#fields.hasErrors('tribunal')}" th:errors="*{tribunal}" class="text-danger"> </span>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label for="nome" class="col-form-label">Nome</label> 
-								<input type="text" th:field="*{nome}" class="form-control" id="nome" placeholder="Nome"> 
-								<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"> </span>
+								<label for="orgaoJudicial" class="col-form-label">Orgão Judicial</label> 
+								<input type="text" th:field="*{orgaoJudicial}" class="form-control" id="orgaoJudicial" placeholder="Orgão Judicial"> 
+								<span th:if="${#fields.hasErrors('orgaoJudicial')}" th:errors="*{orgaoJudicial}" class="text-danger"> </span>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-md-8">
-								<label for="email" class="col-form-label">E-mail</label> 
-								<input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email"> 
-								<span  th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+								<label for="statusProcesso" class="col-form-label">Status do Processo</label> 
+								<input type="text" th:field="*{statusProcesso}" class="form-control" id="statusProcesso" placeholder="Status do Processo"> 
+								<span th:if="${#fields.hasErrors('statusProcesso')}" th:errors="*{statusProcesso}" class="text-danger"> </span>
 							</div>
-	                   
+						</div>
+						<div class="row">
+							<div class="form-group col-md-8">
+								<label for="dataDeAbertura" class="col-form-label">Data De Abertura</label> 
+								<input type="text" th:field="*{dataDeAbertura}" class="form-control" id="dataDeAbertura" placeholder="xx/xx/xxxx"> 
+								<span  th:if="${#fields.hasErrors('dataDeAbertura')}" th:errors="*{dataDeAbertura}" class="text-danger"></span>
+							</div>
 							<div class="row">
 								<div class="form-group col-md-8">
-									<label for="cep" class="col-form-label">CEP</label> <input
-										type="text" th:field="*{cep}" class="form-control" id="cep"
-										placeholder="CEP"> <span
-										th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}"
+									<label for="descProcesso" class="col-form-label">Descrição do Processo</label> <input
+										type="text" th:field="*{descProcesso}" class="form-control" id="descProcesso"
+										placeholder="Descrição do Processo"> <span
+										th:if="${#fields.hasErrors('descProcesso')}" th:errors="*{descProcesso}"
 										class="text-danger"></span>
 								</div>
 								<div class="form-group col-md-8">

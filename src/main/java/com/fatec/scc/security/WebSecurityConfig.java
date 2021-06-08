@@ -15,6 +15,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/sig/cliente").hasAnyRole("ADMIN", "BIB") //
 			.antMatchers("/sig/cliente/{id}").hasRole("ADMIN") // somente login jose pode excluir
+			.antMatchers("/sig/processo").hasAnyRole("ADMIN", "BIB")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin().loginPage("/login").permitAll().and().logout()
