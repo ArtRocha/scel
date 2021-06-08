@@ -8,5 +8,5 @@ public class SccApplication {
 		
 	public static void main(String[] args) {
 		SpringApplication.run(SccApplication.class, args);
-	}
+	}	
 }
