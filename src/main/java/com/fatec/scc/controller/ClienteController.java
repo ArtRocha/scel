@@ -22,6 +22,7 @@ public class ClienteController {
 	@Autowired
 	ClienteServico servico;
 
+	
 	@GetMapping("/clientes")
 	public ModelAndView retornaFormDeConsultaTodosClientes() {
 		ModelAndView modelAndView = new ModelAndView("consultarCliente");
